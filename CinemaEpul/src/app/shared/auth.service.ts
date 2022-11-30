@@ -12,14 +12,18 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  endpoint: string = 'http://localhost:4000/';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  endpoint: string = 'http://localhost:8080/';
+  headers = new HttpHeaders()
+  .append('Content-Type', 'application/json')
+  .append('Access-Control-Allow-Headers', 'Content-Type')
+  .append('Access-Control-Allow-Origin', '*')
+  .append('Access-Control-Allow-Origin', 'Origin, X-Requested-With, Content-Type, Accept');
   currentUser = {};
   constructor(private http: HttpClient, public router: Router) {}
   // Sign-in
   signIn(user: User) {
     return this.http
-      .post<any>(`${this.endpoint}authentification/login`, user)
+      .post<any>(`${this.endpoint}authentification/login`, { headers: this.headers })
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token);
         console.log(res.token);
