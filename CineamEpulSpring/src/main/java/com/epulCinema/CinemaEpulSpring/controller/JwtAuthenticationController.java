@@ -21,7 +21,7 @@ import com.epulCinema.CinemaEpulSpring.domains.JwtResponse;
 
 @RequestMapping("/authentification")
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin
 public class JwtAuthenticationController {
 
     @Autowired

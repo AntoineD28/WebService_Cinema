@@ -16,12 +16,13 @@ export class LoginInComponent {
     public router: Router
   ) {
     this.signinForm = this.fb.group({
-      email: [''],
-      password: [''],
+      nomUtil: [''],
+      motPasse: [''],
     });
   }
   ngOnInit() {}
   loginUser() {
     this.authService.signIn(this.signinForm.value);
+    this.router.navigate(['films']);
   }
 }
