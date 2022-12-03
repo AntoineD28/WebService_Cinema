@@ -7,23 +7,26 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { InitialNavigation, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   endpoint: string = 'http://localhost:8080/';
-  headers = new HttpHeaders()
-  .append('Content-Type', 'application/json')
-  .append('Access-Control-Allow-Headers', 'Content-Type')
-  .append('Access-Control-Allow-Origin', '*')
-  .append('Access-Control-Allow-Origin', 'Origin, X-Requested-With, Content-Type, Accept');
+  headers: any;
   currentUser = {};
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(private http: HttpClient, public router: Router) {
+    this.headers = new HttpHeaders()
+    .append('Content-Type', 'application/json')
+    .append('Access-Control-Allow-Headers', 'Content-Type')
+    .append('Access-Control-Allow-Origin', '*')
+    .append('Access-Control-Allow-Origin', 'Origin, X-Requested-With, Content-Type, Accept');
+  }
   // Sign-in
   signIn(user: User) {
+    console.log(user);
     return this.http
-      .post<any>(`${this.endpoint}authentification/login`, { headers: this.headers })
+      .post<any>(`${this.endpoint}authentification/login`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token);
         console.log(res.token);

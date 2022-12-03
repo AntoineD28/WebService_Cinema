@@ -107,5 +107,8 @@
       }
     }
   },
-  "defaultProject": "CinemaEpul"
+  "defaultProject": "CinemaEpul",
+  "cli": {
+    "analytics": false
+  }
 }
