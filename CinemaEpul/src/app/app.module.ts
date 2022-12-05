@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { ListeFilmsComponent } from './liste-films/liste-films.component';
 import { AuthInterceptor } from './shared/authconfig.interceptors';
 import { LoginInComponent } from './login-in/login-in.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CategorieComponent } from './categorie/categorie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListeFilmsComponent,
-    LoginInComponent
+    LoginInComponent,
+    NavbarComponent,
+    CategorieComponent
   ],
   imports: [
     BrowserModule,

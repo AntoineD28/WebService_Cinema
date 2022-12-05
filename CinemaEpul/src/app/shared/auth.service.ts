@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import {
   HttpClient,
   HttpHeaders,
@@ -23,14 +23,13 @@ export class AuthService {
     .append('Access-Control-Allow-Origin', 'Origin, X-Requested-With, Content-Type, Accept');
   }
   // Sign-in
-  signIn(user: User) {
+  signIn(user: User) : Observable<any> {
     console.log(user);
     return this.http
       .post<any>(`${this.endpoint}authentification/login`, user)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token);
-        console.log(res.token);
-      });
+      .pipe(
+        tap((res: any) => localStorage.setItem('access_token', res.token))
+      );
   }
   getToken() {
     return localStorage.getItem('access_token');
@@ -42,7 +41,7 @@ export class AuthService {
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');
     if (removeToken == null) {
-      this.router.navigate(['films']);
+      this.router.navigate(['log-in']);
     }
   }
   // User profile

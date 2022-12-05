@@ -10,11 +10,14 @@ import { Film } from './film';
 export class ListeFilmsComponent {
 
   films: Film[] = [];
+  user: any;
   
   constructor(private service:FilmService) { }
 
   ngOnInit(): void {
     this.getFilms();
+    /*this.user = history.state.data;
+    console.log(history.state.data);*/
   }
 
   getFilms() : void {
