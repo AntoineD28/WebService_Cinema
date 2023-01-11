@@ -1,7 +1,7 @@
 package com.epulCinema.CinemaEpulSpring.service;
 
-import com.epulCinema.CinemaEpulSpring.domains.EntityCategorie;
 import com.epulCinema.CinemaEpulSpring.domains.EntityFilm;
+import com.epulCinema.CinemaEpulSpring.domains.EntityPersonnage;
 import com.epulCinema.CinemaEpulSpring.mesExceptions.MonException;
 import com.epulCinema.CinemaEpulSpring.repositories.FilmRepository;
 import org.springframework.stereotype.Service;
@@ -31,4 +31,12 @@ public class FilmService {
     public List<EntityFilm> getAllFilms(){
         return filmRepository.findAll();
     }
+
+    public void delete(int id){filmRepository.deleteById(id);}
+
+    public void saveOrUpdate(EntityFilm film){
+        for (EntityPersonnage pers : film.getPersonnages()){
+            pers.setFilm(film);
+        }
+        filmRepository.save(film);}
 }

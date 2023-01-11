@@ -1,7 +1,6 @@
 package com.epulCinema.CinemaEpulSpring.domains;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity(name = "realisateur")
 public class EntityRealisateur {

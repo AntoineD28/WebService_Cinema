@@ -17,4 +17,5 @@ public interface FilmRepository extends JpaRepository<EntityFilm, Integer> {
             "FROM personnage P, acteur A " +
             "WHERE P.acteur = A and A.noact = :noAct")
     public List<EntityFilm> findByNoAct(int noAct);
+
 }
