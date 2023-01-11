@@ -28,7 +28,7 @@ export class AuthService {
     return this.http
       .post<any>(`${this.endpoint}authentification/login`, user)
       .pipe(
-        tap((res: any) => localStorage.setItem('access_token', res.token))
+        tap((res: any) => localStorage.setItem('access_token', res.jwttoken))
       );
   }
   getToken() {

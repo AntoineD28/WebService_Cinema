@@ -10,6 +10,8 @@ import { Film } from './film';
 export class ListeFilmsComponent {
 
   films: Film[] = [];
+  film: Film = {personnages: {}} as Film;
+  showDetail = false;
   user: any;
   
   constructor(private service:FilmService) { }
@@ -26,6 +28,15 @@ export class ListeFilmsComponent {
         this.films = response;
         console.log(this.films);
       });
+  }
+
+  showDetails(id: number) {
+    this.film = this.films[id-1];
+    this.showDetail = true;
+  }
+
+  hideDetails() {
+    this.showDetail = false;
   }
   
 }
