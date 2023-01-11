@@ -1,7 +1,5 @@
 package com.epulCinema.CinemaEpulSpring.domains;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 
 @Entity(name = "categorie")

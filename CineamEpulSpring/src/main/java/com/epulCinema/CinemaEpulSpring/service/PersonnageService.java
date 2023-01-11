@@ -1,19 +1,18 @@
 package com.epulCinema.CinemaEpulSpring.service;
 
-import com.epulCinema.CinemaEpulSpring.domains.EntityActeur;
-import com.epulCinema.CinemaEpulSpring.mesExceptions.MonException;
-import com.epulCinema.CinemaEpulSpring.repositories.ActeurRepository;
+import com.epulCinema.CinemaEpulSpring.domains.EntityPersonnage;
+import com.epulCinema.CinemaEpulSpring.repositories.PersonnageRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PersonnageService {
-    private ActeurRepository acteurRepository;
+    private PersonnageRepository personnageRepository;
 
-    public PersonnageService(ActeurRepository aR){this.acteurRepository = aR;}
+    public PersonnageService(PersonnageRepository pR){this.personnageRepository = pR;}
 
-    public EntityActeur getUnClientID(int id) {
-        return acteurRepository.findById(id).orElseThrow(
-                () -> new MonException("Client", "id", id)
-        );
+    public void saveOrUpdate(EntityPersonnage pers){
+        personnageRepository.save(pers);
     }
 }
