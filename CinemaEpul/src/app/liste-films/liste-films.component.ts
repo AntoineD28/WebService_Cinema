@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FilmService } from '../services/film.service';
 import { Film } from './film';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-liste-films',
@@ -12,6 +13,7 @@ export class ListeFilmsComponent {
   films: Film[] = [];
   film: Film = {personnages: {}} as Film;
   showDetail = false;
+  isModify = false;
   user: any;
   
   constructor(private service:FilmService) { }
@@ -37,6 +39,14 @@ export class ListeFilmsComponent {
 
   hideDetails() {
     this.showDetail = false;
+  }
+
+  modifyFilm() {
+    this.isModify = true;
+  }
+
+  saveFilm() {
+    this.isModify = false;
   }
   
 }
