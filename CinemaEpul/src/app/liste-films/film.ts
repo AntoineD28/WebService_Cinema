@@ -1,5 +1,5 @@
 export interface Film {
-    nofilm: number
+    noFilm: number
     titre: string
     duree: number
     dateSortie: string
@@ -8,7 +8,6 @@ export interface Film {
     realisateur: Realisateur
     categorie: Categorie
     personnages: Personnage[]
-    noFilm: number
   }
   
   export interface Realisateur {

@@ -11,6 +11,7 @@ import { AuthInterceptor } from './shared/authconfig.interceptors';
 import { LoginInComponent } from './login-in/login-in.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategorieComponent } from './categorie/categorie.component';
+import { ListeActeursComponent } from './liste-acteurs/liste-acteurs.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CategorieComponent } from './categorie/categorie.component';
     ListeFilmsComponent,
     LoginInComponent,
     NavbarComponent,
-    CategorieComponent
+    CategorieComponent,
+    ListeActeursComponent
   ],
   imports: [
     BrowserModule,

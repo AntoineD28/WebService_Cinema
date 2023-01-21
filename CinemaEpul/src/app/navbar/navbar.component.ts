@@ -24,4 +24,8 @@ export class NavbarComponent {
     this.router.navigate(['/categories']);
   }
 
+  navAct() {
+    this.router.navigate(['/acteurs']);
+  }
+
 }

@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+<div class="flex justify-center mt-10">
+    <div class="w-3/4">
+        <ul class="grid grid-cols-2 gap-4">
+            <li *ngFor='let act of Acteurs' class="flex w-[500px] h-[216px] border-b-2 border-[#ffb41c] pb-4">
+                <div class="basis-[30%] bg-cover" style="background-image: url('./assets/IMG/Acteurs/{{act.prenAct+act.nomAct}}.jpg')"></div>
+                <div class="basis-[70%] flex flex-col px-2 gap-2">
+                    <p class="font-bold">{{act.prenAct + ' ' + act.nomAct }}</p>
+                    <p *ngIf="act.dateDeces == null" class="text-xs text-gray-500 ">{{act.dateNaiss | date: 'dd/MM/yyyy'}}</p>
+                    <p *ngIf="act.dateDeces != null"class="text-xs text-gray-500 ">{{act.dateNaiss | date: 'dd/MM/yyyy'}} - {{act.dateDeces | date: 'dd/MM/yyyy'}}</p>
+                    <button class="bg-[#e0e0e0] font-bold py-1 w-1/2">FILMOGRAPHIE</button>
+               </div>
+            </li>
+            <li class="flex justify-center items-center w-[500px] h-[216px] border-b-2 border-[#ffb41c] pb-4">
+                <button class="w-[100px] h-[100px] border-2 rounded-full bg-[#ffb41c] px-4 py-2 text-center text-3xl font-bold text-white shadow-sm hover:bg-white hover:text-[#ffb41c] hover:border-[#ffb41c]">+</button>
+            </li>
+        </ul>
+    </div>
+</div>

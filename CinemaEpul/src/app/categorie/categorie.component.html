@@ -4,7 +4,7 @@
         <ul class="grid grid-cols-1 gap-4 justify-items-center">
             <li *ngFor='let cat of categories' class="w-[400px] h-[200px] border-2 border-[#d8d8d8] flex justify-center items-center bg-no-repeat bg-cover"
             style="background-image: url('./assets/IMG/{{ cat.libelleCat }}.jpg')">
-            <div class="flex justify-center items-center w-full h-full font-bold text-white text-[48px] bg-black/[0.6]">
+            <div (click)="navToFilm(cat.codecat)" class="flex justify-center items-center w-full h-full font-bold text-white text-[48px] bg-black/[0.6]">
                 <p>{{ cat.libelleCat }}</p>
             </div>
             </li>
