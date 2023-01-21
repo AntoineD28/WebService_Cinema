@@ -1,5 +1,7 @@
 package com.epulCinema.CinemaEpulSpring.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +21,7 @@ public class EntityActeur {
     private Date dateDeces;
 
     @OneToMany(mappedBy = "acteur", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("acteur")
     private List<EntityPersonnage> personnages;
 
     public List<EntityPersonnage> getPersonnages() {
