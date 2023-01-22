@@ -2,7 +2,7 @@
 <div class="flex justify-center mt-10">
     <div class="w-3/4">
         <ul class="grid grid-cols-4 gap-4">
-            <li *ngFor='let film of films' (click)="showDetails(film.noFilm)" class="w-[200px] h-[350px] border-2 border-[#d8d8d8] flex flex-col">
+            <li *ngFor='let film of films let i=index' (click)="showDetails(i)" class="w-[200px] h-[350px] border-2 border-[#d8d8d8] flex flex-col">
                 <div class="basis-[80%] bg-cover" style="background-image: url('./assets/IMG/{{ film.titre }}.jpg')">
                 </div>
                 <div class="basis-[20%] text-center">
@@ -42,7 +42,7 @@
       <div class="w-10/12 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-2/4">
         <div *ngIf="!isModify" class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 flex flex-col justify-center items-center">
             <p class="text-[#ffb41c] font-bold">{{film.titre}}</p>
-            <p>{{ film.dateSortie | date: 'shortDate' }} {{' en salle / ' + film.duree + ' min / ' + film.categorie.libelleCat }}</p>
+            <p>{{ film.dateSortie | date: 'dd/MM/yyyy' }} {{' / ' + film.duree + ' min / ' + film.categorie.libelleCat }}</p>
             <p>Réalisateurs</p>
             <div class="w-full text-center">
                 <p class="font-bold">{{film.realisateur.prenRea + ' ' + film.realisateur.nomRea}}</p>

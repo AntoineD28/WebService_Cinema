@@ -10,6 +10,8 @@ import { FilmService } from '../services/film.service';
 export class ListeActeursComponent implements OnInit {
 
   Acteurs : Acteur[] = [];
+  Acteur: Acteur = {personnages: {}} as Acteur;
+  isFilmo: Boolean = false;
 
   constructor(private service: FilmService) { }
 
@@ -19,6 +21,15 @@ export class ListeActeursComponent implements OnInit {
         this.Acteurs = data;
         console.log(this.Acteurs);
       });
+  }
+
+  showFilmo(id: number) {
+    this.isFilmo = true;
+    this.Acteur = this.Acteurs[id];
+  }
+
+  hideFilmo() {
+    this.isFilmo = false;
   }
 
 }

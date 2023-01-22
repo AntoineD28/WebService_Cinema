@@ -21,8 +21,8 @@ export class CategorieComponent {
       })
   }
 
-  navToFilm(id : String) {
-    this.router.navigate(['/film'], { queryParams: { id } });
+  navToFilm(codeCate : String) {
+    this.router.navigate(['/films'], {queryParams: {code : codeCate}});
   }
 
 }
