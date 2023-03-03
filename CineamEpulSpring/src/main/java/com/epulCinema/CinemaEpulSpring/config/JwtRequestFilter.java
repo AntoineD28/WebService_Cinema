@@ -33,6 +33,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwtToken = null;
 
+        if ("/authentification/login".equals(request.getServletPath())) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         // On attend le token sous la forme  "Bearer token"
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);

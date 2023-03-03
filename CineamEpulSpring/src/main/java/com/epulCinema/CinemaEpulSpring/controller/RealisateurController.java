@@ -5,11 +5,9 @@ import com.epulCinema.CinemaEpulSpring.mesExceptions.MonException;
 import com.epulCinema.CinemaEpulSpring.service.RealisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/realisateurs")
 public class RealisateurController {
@@ -31,6 +29,10 @@ public class RealisateurController {
         return realisateur;
     }
 
-
+    @PostMapping("/add")
+    public int createFilm(@RequestBody EntityRealisateur realisateur){
+        realisateurService.add(realisateur);
+        return realisateur.getNorea();
+    }
 
 }

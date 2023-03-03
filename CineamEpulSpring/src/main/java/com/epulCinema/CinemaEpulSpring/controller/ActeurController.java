@@ -1,32 +1,23 @@
 package com.epulCinema.CinemaEpulSpring.controller;
 
 import com.epulCinema.CinemaEpulSpring.domains.EntityActeur;
+import com.epulCinema.CinemaEpulSpring.domains.EntityFilm;
 import com.epulCinema.CinemaEpulSpring.mesExceptions.MonException;
-import com.epulCinema.CinemaEpulSpring.repositories.ActeurRepository;
 import com.epulCinema.CinemaEpulSpring.service.ActeurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/acteurs")
 public class ActeurController {
 
     @Autowired
     private ActeurService acteurService;
-
-    @Autowired
-    private ActeurRepository acteurRepository;
-
-    /*@GetMapping("/{id}")
-    public Optional<EntityActeur> get(@PathVariable(value="id")int id){
-        return acteurRepository.findById(id);
-    }*/
 
     @GetMapping("/{id}")
     public EntityActeur get(@PathVariable(value= "id")int id) {
@@ -41,4 +32,16 @@ public class ActeurController {
         return acteur;
     }
 
+    @GetMapping("/all")
+    public List<EntityActeur> getAll(){
+        List<EntityActeur> acteurs= new ArrayList<>();
+        try{
+            acteurs = acteurService.getAllActeurs();
+        }catch(MonException e){
+            ResponseEntity.notFound().build();
+        }catch(Exception e){
+            ResponseEntity.notFound().build();
+        }
+        return acteurs;
+    }
 }

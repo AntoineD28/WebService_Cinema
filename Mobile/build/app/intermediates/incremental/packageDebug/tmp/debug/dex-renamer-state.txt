@@ -1,0 +1,4 @@
+#Fri Mar 03 16:40:26 CET 2023
+base.0=C\:\\Users\\Epulapp\\Documents\\Polytech\\S9\\WebService\\WebService_Cinema\\Mobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

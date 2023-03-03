@@ -1,12 +1,8 @@
 package com.epulCinema.CinemaEpulSpring.domains;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Objects;
-import java.io.Serializable;
 
 @Entity(name = "personnage")
 @IdClass(EntityPersonnageID.class)
@@ -16,9 +12,9 @@ public class EntityPersonnage {
     private String nomPers;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="noact")
-    //@JsonIgnore
+    @JsonIgnoreProperties("personnages")
     private EntityActeur acteur;
 
     @Id
@@ -34,27 +30,24 @@ public class EntityPersonnage {
         return nomPers;
     }
 
-    /*public EntityActeur getActeur() {
+    public void setFilm(EntityFilm film){
+        this.film=film;
+    }
+
+    public void setNomPers(String nomPers) {
+        this.nomPers = nomPers;
+    }
+
+    public void setActeur(EntityActeur acteur) {
+        this.acteur = acteur;
+    }
+
+    public EntityActeur getActeur() {
         return acteur;
     }
 
     public EntityFilm getFilm() {
         return film;
-    }*/
-
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EntityPersonnage that = (EntityPersonnage) o;
-        return Objects.equals(nomPers, that.nomPers) &&
-                Objects.equals(acteur, that.acteur) &&
-                Objects.equals(film, that.film);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nomPers, acteur, film);
-    }*/
 }
 

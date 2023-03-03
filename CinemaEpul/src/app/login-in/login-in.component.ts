@@ -22,7 +22,9 @@ export class LoginInComponent {
   }
   ngOnInit() {}
   loginUser() {
-    this.authService.signIn(this.signinForm.value);
-    this.router.navigate(['films']);
+    this.authService.signIn(this.signinForm.value).subscribe(() => {
+      localStorage.setItem('nomUtil', this.signinForm.get('nomUtil')?.value);
+      this.router.navigate(['films']/*, {state: {data: this.signinForm.get('nomUtil')?.value}}*/);
+    });
   }
 }

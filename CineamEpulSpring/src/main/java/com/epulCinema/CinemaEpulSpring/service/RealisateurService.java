@@ -16,4 +16,6 @@ public class RealisateurService {
                 () -> new MonException("Realisateur", "id", id)
         );
     }
+
+    public void add(EntityRealisateur realisateur){realisateurRepository.save(realisateur);}
 }

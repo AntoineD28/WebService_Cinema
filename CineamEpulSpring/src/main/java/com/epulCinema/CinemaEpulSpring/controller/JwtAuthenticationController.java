@@ -3,6 +3,7 @@ package com.epulCinema.CinemaEpulSpring.controller;
 import com.epulCinema.CinemaEpulSpring.domains.EntityUtilisateur;
 import com.epulCinema.CinemaEpulSpring.repositories.EntityUtilisateurRepository;
 import com.epulCinema.CinemaEpulSpring.service.JwtUserDetailsService;
+import com.epulCinema.CinemaEpulSpring.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,33 +34,26 @@ public class JwtAuthenticationController {
 
     private EntityUtilisateurRepository unUtilisateurRepostory;
 
+    private UtilisateurService utilisateurService;
     // on initialise
     @Autowired
-    public JwtAuthenticationController(EntityUtilisateurRepository UtilisateurRepostory) {
+    public JwtAuthenticationController(EntityUtilisateurRepository UtilisateurRepostory, UtilisateurService us) {
         this.unUtilisateurRepostory = UtilisateurRepostory;
+        this.utilisateurService = us;
     }
     // auhentification  qui va généré un jeton
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody EntityUtilisateur unUti)
             throws Exception {
         try {
-            // On contrôle l'utilisateur
             UserDetails userDetails= appelAuthentication(unUti.getNomUtil(), unUti.getMotPasse());
-            // on récupère les informations
-            // nouvel accès à la base de données
-            //final UserDetails userDetails = userDetailsService.loadUserByUsername(unUti.getNomUtil());
-            // On génère le jeton
             final String token = jwtTokenUtil.generateToken(userDetails);
-            // on retourne le jeton dans un flux json
-            return ResponseEntity.ok(new JwtResponse(token));
+            EntityUtilisateur utilisateur = utilisateurService.getUtilisateur(unUti.getNomUtil());
+            return ResponseEntity.ok(new JwtResponse(token, utilisateur.getNumUtil(), utilisateur.getNomUtil(), utilisateur.getRole()));
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
-
-    // Demande d'authentification à l'aide de l'objet instancié précédemment
-    // La méthode authenticate() appellera la méthode loadUserByUsername() de la classe UserDetailsServiceImpl
-    // L'objet autentication contiendra l'objet userDetails dans la propriété principal
     private UserDetails appelAuthentication(String username, String password) throws Exception {
 
         try {

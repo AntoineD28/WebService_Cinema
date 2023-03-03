@@ -1,6 +1,5 @@
 package com.epulCinema.CinemaEpulSpring.controller;
 
-import com.epulCinema.CinemaEpulSpring.domains.EntityCategorie;
 import com.epulCinema.CinemaEpulSpring.domains.EntityFilm;
 import com.epulCinema.CinemaEpulSpring.mesExceptions.MonException;
 import com.epulCinema.CinemaEpulSpring.service.FilmService;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/films")
@@ -69,5 +67,22 @@ public class FilmController {
             ResponseEntity.notFound().build();
         }
         return films;
+    }
+
+    @PostMapping("/create")
+    public int createFilm(@RequestBody EntityFilm film){
+        filmService.saveOrUpdate(film);
+        return film.getNoFilm();
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteFilm(@PathVariable("id")int id){
+        filmService.delete(id);
+    }
+
+    @PutMapping("/update")
+    public int updateFilm(@RequestBody EntityFilm film){
+        filmService.saveOrUpdate(film);
+        return film.getNoFilm();
     }
 }
